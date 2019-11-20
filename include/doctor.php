@@ -55,13 +55,14 @@ function viewpatient()
 {
 	// $id = $_GET['id'];
 	require 'db.php';
-	$sql = "SELECT users.id,patients.surname,patients.other_names From users INNER JOIN patients ON patients.user_id = patients.user_id WHERE role = 'patient'";
+	$sql = "SELECT users.id,patients.* From users INNER JOIN patients ON patients.user_id = patients.user_id WHERE role = 'patient'";
     $query = mysqli_query($conn,$sql);
     echo "<table border='1' style='width:100%'>
             <tr>
                 <th>Patient ID</th>
                 <th>Surname</th>
                 <th>other Names</th>
+                <th>Gender</th>
             </tr>";
 	while ($row = mysqli_fetch_array($query)) {
        
@@ -69,6 +70,7 @@ function viewpatient()
                 <td>".$row['id']."</td>
                 <td>".$row['surname']."</td>
                 <td>".$row['other_names']."</td>
+                <td>".$row['gender']."</td>
             </tr>";
             
     echo "</table>";
