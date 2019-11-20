@@ -1,5 +1,6 @@
 <?php
 include 'db.php';
+require_once '../include/config.php';
 function addpatient()
 {
 	global $conn;
@@ -22,8 +23,6 @@ function addpatient()
     // create user account for patient
     $password = md5( $password_1 );
 
-    require_once '../include/config.php';
-
 	$sql = "INSERT INTO users (username, email, password, role) VALUES('$username', '$email', '$password', 'patient')";
     $query = mysqli_query($conn,$sql);
 
@@ -39,15 +38,47 @@ function addpatient()
         $_SESSION['patient_id'] = mysqli_insert_id( $conn );
         //save the value in the $_SESSION
 
+        if (!empty($query)) {
+            header("location:test.html");
+            // echo "<br><b style='color:#008080;font-size:14px;font-family:Arial;'>Patient personal information Succesfully Added</b><br><br>";
+        }
+        else{
+            echo mysqli_error();
+        }
+
     }
 
-	if (!empty($query)) {
-        echo "<br><b style='color:#008080;font-size:14px;font-family:Arial;'>Patient personal information Succesfully Added</b><br><br>";
-        header('location:medical_test.php');
-	}
-	else{
-		echo mysqli_error();
+
+}
+
+function viewpatient()
+{
+	// $id = $_GET['id'];
+	require 'db.php';
+	$sql = "SELECT users.id,patients.surname,patients.other_names From users INNER JOIN patients ON patients.user_id = patients.user_id WHERE role = 'patient'";
+    $query = mysqli_query($conn,$sql);
+    echo "<table border='1' style='width:100%'>
+            <tr>
+                <th>Patient ID</th>
+                <th>Surname</th>
+                <th>other Names</th>
+            </tr>";
+	while ($row = mysqli_fetch_array($query)) {
+       
+     echo " <tr>
+                <td>".$row['id']."</td>
+                <td>".$row['surname']."</td>
+                <td>".$row['other_names']."</td>
+            </tr>";
+            
+    echo "</table>";
+		
 	}
 }
+
+
+
+
+
 
 ?>

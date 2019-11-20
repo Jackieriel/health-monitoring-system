@@ -1,9 +1,15 @@
+<?php
+    require "../include/doctor.php";
+?>
+
 <?php 
 session_start();
 if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
 	header("Location: ../index.php");
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -122,7 +128,7 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                                 <input type="submit" name="btn" class="btn btn-primary btn-block btn-md" />
                             </div>
                         </form>
-                        <div class="text-center no-top-margin">
+                        <div class="text-center">
                         <?php 
                             extract($_POST);
                             if (isset($btn) && 
@@ -146,7 +152,7 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                             }
                             else
                             {
-                                require "../include/doctor.php";
+                                // require "../include/doctor.php";
                                 addpatient();
                             }
 			            ?>
