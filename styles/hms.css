@@ -1,0 +1,262 @@
+:root {
+  --primary-color: #3b5998;
+  --secondary-color: #00acee;
+  --deep-primary-color: #0a2a70;
+  --white-color: #fff;
+  --gray-color: gray;
+  --black-color: #000;
+}
+
+body {
+  /* background: url(../images/hea.jpg); */
+  background: linear-gradient(
+      0deg,
+      rgba(241, 242, 243, 0.3),
+      rgba(105, 166, 240, 0.3)
+    ),
+    url("../images/health.jpeg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.register {
+  /* background: -webkit-linear-gradient(left, #3931af, #00c6ff); */
+  background: linear-gradient(
+      0deg,
+      rgba(105, 166, 240, 0.3),
+      rgba(105, 166, 240, 0.3)
+    ),
+    url("../images/health4.jpeg");
+  margin-top: 3%;
+  padding: 3%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.register-left {
+  text-align: center;
+  color: #fff;
+  margin-top: 4%;
+}
+.register-left input {
+  border: none;
+  border-radius: 1.5rem;
+  padding: 2%;
+  width: 60%;
+  background: #f8f9fa;
+  font-weight: bold;
+  color: #383d41;
+  margin-top: 30%;
+  margin-bottom: 3%;
+  cursor: pointer;
+}
+.register-right {
+  background: #f8f9fa;
+  border-top-left-radius: 10% 50%;
+  border-bottom-left-radius: 10% 50%;
+}
+.register-left img {
+  margin-top: 15%;
+  margin-bottom: 5%;
+  width: 25%;
+  -webkit-animation: mover 2s infinite alternate;
+  animation: mover 1s infinite alternate;
+}
+@-webkit-keyframes mover {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
+}
+@keyframes mover {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
+}
+.register-left p {
+  font-weight: lighter;
+  padding: 12%;
+  margin-top: -9%;
+}
+.register .register-form {
+  padding: 10%;
+  padding-bottom: 5px;
+  margin-top: 10%;
+}
+.btnRegister {
+  float: right;
+  margin-top: 10%;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 2%;
+  background: #0062cc;
+  color: #fff;
+  font-weight: 600;
+  width: 50%;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.register .nav-tabs {
+  margin-top: 3%;
+  border: none;
+  background: #0062cc;
+  border-radius: 1.5rem;
+  width: 28%;
+  float: right;
+}
+.register .nav-tabs .nav-link {
+  padding: 2%;
+  height: 34px;
+  font-weight: 600;
+  color: #fff;
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+.register .nav-tabs .nav-link:hover {
+  border: none;
+}
+.register .nav-tabs .nav-link.active {
+  width: 100px;
+  color: #0062cc;
+  border: 2px solid #0062cc;
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+}
+.register-heading {
+  text-align: center;
+  margin-top: 8%;
+  margin-bottom: -15%;
+  color: #495057;
+}
+
+.foot {
+  text-align: center;
+  color: rgb(2, 2, 56);
+  font-weight: bold;
+}
+
+/* Login */
+.register-right-login {
+  background: #f8f9fa;
+  /* border-top-left-radius: 10% 50%; */
+  /* border-bottom-left-radius: 10% 50%; */
+}
+
+.group-menu {
+  /* text-align: center; */
+  margin-top: 8%;
+  margin-bottom: -15%;
+  color: #495057;
+  display: flex;
+  justify-content: center;
+}
+
+/* Monitor Form */
+.my-form input[type="number"] {
+  width: 60%;
+  padding: 6px 5px 5px 6px;
+  margin: 4px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* new monitor form */
+
+.login-form {
+  width: 340px;
+  margin: 50px auto;
+}
+.login-form form {
+  margin-bottom: 15px;
+  background: #f7f7f7;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+}
+.login-form h2 {
+  margin: 0 0 15px;
+}
+.form-control,
+.btn {
+  min-height: 38px;
+  border-radius: 2px;
+}
+.btn {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* Media Quaries */
+@media only screen and (max-width: 768px) {
+  .login-form {
+    width: 100%;
+    margin: 50px auto;
+  }
+}
+
+/* Generic Classes */
+.margin-none {
+  margin-bottom: 0px;
+}
+
+.primary {
+  color: var(--primary-color);
+}
+
+.white {
+  color: var(--white-color);
+}
+
+.primary-bg {
+  background: var(--primary-color);
+}
+
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.no-top-margin{
+  margin-top: -34px;
+  padding-top: 0px;
+}
+
+.no-under {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.margin-right {
+  margin: 2em;
+}
+.monitor-label {
+  width: 35%;
+}
+
+.margin-down {
+  margin-bottom: 2em;
+}
+
+#output_image
+{
+ /* max-width:300px; */
+ width: 200px;
+ -webkit-animation:none;
+  animation:none;
+
+}
+

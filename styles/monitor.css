@@ -1,0 +1,82 @@
+:root {
+    --primary-color: #3b5998;
+    --secondary-color: #00acee;
+    --deep-primary-color: #0a2a70;
+    --white-color: #fff;
+    --gray-color: gray;
+    --black-color: #000;
+  }
+
+.login-form-1{
+    /* padding: 5%; */
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-1 h3{
+    text-align: center;
+    color: #333;
+}
+.login-form-2{
+    /* padding: 5%; */
+    background: var(--primary-color);
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+
+    /* background: linear-gradient(
+        0deg,
+        rgba(22, 58, 94, 0.3),
+        rgba(5, 43, 90, 0.3)
+      ),
+      url("../images/health.jpeg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; */
+}
+
+.login-container form{
+    padding: 10%;
+}
+.btnSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+.login-form-1 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #0062cc;
+}
+.login-form-2 .btnSubmit{
+    font-weight: 600;
+    color: #0062cc;
+    background-color: #fff;
+}
+.login-form-2 .ForgetPwd{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+.login-form-1 .ForgetPwd{
+    color: #0062cc;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+
+.primary {
+    color: var(--primary-color);
+  }
+
+  .profiling{
+      text-align: center;
+  }
+.profiling img{
+    border-radius: 50%;
+    /* height: 50%; */
+    width: 25%;
+}
+
+.form-group {
+    margin-bottom: 0px;
+}

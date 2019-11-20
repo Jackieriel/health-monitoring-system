@@ -1,0 +1,142 @@
+:root {
+    --primary-color: #3b5998;
+    --secondary-color: #00acee;
+    --deep-primary-color: #0a2a70;
+    --white-color: #fff;
+    --gray-color: gray;
+    --black-color: #000;
+}
+
+body{
+    background:var(--primary-color);
+    background: url('../images/health3.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(1,minmax(500px,auto));
+    max-width: 90%;
+    margin:  0 auto;
+}
+
+.grid-col{
+    padding: 20px;
+    background:var(--primary-color);
+    border: solid 1px rgb(241, 237, 237);
+    background: linear-gradient(0deg, rgba(105, 166, 240, 0.3), rgba(105, 166, 240, 0.3)),url('../images/health.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 21px 0px 0px 10px;
+}
+
+
+.white{
+    background: var(--white-color);
+    border-radius: 0px 10px 10px 0px;
+}
+
+form{
+    color: var(--deep-primary-color);
+}
+.form-grid {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.my-form input[type=text],input[type=number],input[type=date],input[type=tel],
+input[type=email],input[type=password]{
+    width: 100%;
+    padding: 12px 10px 10px 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+select{
+    width: 100%;
+    background: var(--white-color);
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+
+/* Header */
+header {
+    background-color:var(--primary-color);
+    color: var(--white-color);
+    margin-bottom: 5px;
+}
+.major-heading{
+    /* background: var(--primary-color); */
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* footer */
+footer{
+    margin-bottom: 0px;
+    margin-top: 5px;
+    padding: 1vh;
+    bottom: 0 !important;
+    background-color:var(--primary-color);
+    color: var(--white-color);
+}
+
+form button{
+    background: var(--primary-color);
+    padding: 5px;
+    border-radius: 5px;
+    color: var(--white-color);
+    width: 80px;
+}
+
+.grid-col img {
+    margin-top: 15%;
+    margin-bottom: 5%;
+    width: 25%;
+    -webkit-animation: mover 2s infinite alternate;
+    animation: mover 1s infinite alternate;
+  }
+
+/* Generic classes*/
+.text-white {
+    color: var(--white-color);
+}
+.text-center {
+    text-align: center;
+}
+.first-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.margin-0 {
+    margin: 0;
+}
+.padding-0 {
+    padding: 0;
+}
+.padding-1 {
+    padding: 0.7em;
+}
+.primary{
+    color: var(--primary-color);
+}
+.transform-upper{
+    text-transform: uppercase;
+}
