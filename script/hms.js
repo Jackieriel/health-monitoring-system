@@ -8,3 +8,10 @@ function preview_image(event)
  }
  reader.readAsDataURL(event.target.files[0]);
 }
+
+$(document).ready(function(){
+    $('[data-toggle="offcanvas"]').click(function(){
+        $("#navigation").toggleClass("hidden-xs");
+    });
+ });
+ 

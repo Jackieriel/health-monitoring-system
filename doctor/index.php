@@ -44,7 +44,7 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                    <!-- <p class="text-center ">Welcome <?php echo doctordetails() ?></p>  -->
                         <a href="addpatient.php" class="margin-right"><i class="fa fa-user-plus fa-4x"></i><br>Register Patient</a>
                         
-                        <a href="#" class="margin-right"><i class="fa fa-database fa-4x text-center"></i><br>View Record</a>
+                        <a href="viewpatients.php" class="margin-right"><i class="fa fa-database fa-4x text-center"></i><br>View Record</a>
 
                         <a href="#" class="margin-right"><i class="fa fa-user-edit fa-4x text-center"></i><br>Edit Patient Record</a>
                 </div>

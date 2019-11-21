@@ -1,10 +1,10 @@
 <?php
 include 'db.php';
 require_once '../include/config.php';
-function addpatient()
-{
-	global $conn;
-	// receive all input values from the form
+
+function addpatient() {
+    global $conn;
+    // receive all input values from the form
     $username = mysqli_real_escape_string( $conn, $_POST['username'] );
     $email = mysqli_real_escape_string( $conn, $_POST['email'] );
     $password_1 = mysqli_real_escape_string( $conn, $_POST['password_1'] );
@@ -23,8 +23,8 @@ function addpatient()
     // create user account for patient
     $password = md5( $password_1 );
 
-	$sql = "INSERT INTO users (username, email, password, role) VALUES('$username', '$email', '$password', 'patient')";
-    $query = mysqli_query($conn,$sql);
+    $sql = "INSERT INTO users (username, email, password, role) VALUES('$username', '$email', '$password', 'patient')";
+    $query = mysqli_query( $conn, $sql );
 
     $user_id = mysqli_insert_id( $conn );
     // echo var_dump( $user_id );
@@ -38,49 +38,66 @@ function addpatient()
         $_SESSION['patient_id'] = mysqli_insert_id( $conn );
         //save the value in the $_SESSION
 
-        if (!empty($query)) {
-            header("location:test.html");
+        if ( !empty( $query ) ) {
+            header( 'location:test.html' );
             // echo "<br><b style='color:#008080;font-size:14px;font-family:Arial;'>Patient personal information Succesfully Added</b><br><br>";
-        }
-        else{
+        } else {
             echo mysqli_error();
         }
 
     }
 
-
 }
 
-function viewpatient()
-{
-	// $id = $_GET['id'];
-	require 'db.php';
-	$sql = "SELECT users.id,patients.* From users INNER JOIN patients ON patients.user_id = patients.user_id WHERE role = 'patient'";
-    $query = mysqli_query($conn,$sql);
-    echo "<table border='1' style='width:100%'>
+function viewpatient() {
+    // $id = $_GET['id'];
+    require 'db.php';
+    $sql = "SELECT users.id,patients.* From users INNER JOIN patients ON users.id = patients.user_id WHERE role = 'patient'";
+    $query = mysqli_query( $conn, $sql );
+
+
+    if ( mysqli_num_rows( $query ) > 0 ) {
+        // echo "<table  border='1' style='width:100%'>
+        echo "
+        <thead>
             <tr>
-                <th>Patient ID</th>
-                <th>Surname</th>
-                <th>other Names</th>
-                <th>Gender</th>
-            </tr>";
-	while ($row = mysqli_fetch_array($query)) {
-       
-     echo " <tr>
-                <td>".$row['id']."</td>
-                <td>".$row['surname']."</td>
-                <td>".$row['other_names']."</td>
-                <td>".$row['gender']."</td>
-            </tr>";
-            
-    echo "</table>";
-		
-	}
+                <th >Patient ID</th>
+                <th >Surname</th>
+                <th >Other Names</th>
+                <th >Gender</th>
+                <th >Date Of Birth</th>
+                <th >Phone</th>
+                <th >Height</th>
+                <th >Weight</th>
+                <th >Address</th>
+                <th >Doctor</th>
+                <th >Date Registered</th>
+            </tr>
+        </thead>";
+        // output data of each row
+        while( $row = mysqli_fetch_assoc( $query ) ) {
+            echo "<tbody>".
+                    "<tr>".
+                            " <td>".$row["id"]."</td>".
+                            " <td>".$row["surname"]."</td>".
+                            " <td>".$row["other_names"]."</td>".
+                            " <td>".$row["gender"]."</td>".
+                            " <td>".$row["date_of_birth"]."</td>".
+                            " <td>".$row["phone"]."</td>".
+                            " <td>".$row["height"]."</td>".
+                            " <td>".$row["weight"]."</td>".
+                            " <td>".$row["address"]."</td>".
+                            " <td>".$row["doctor"]."</td>".
+                            "  <td>".$row["created_at"]."</td>".
+                    "</tr>".
+                 "</tbody>" ;
+        }
+        // echo "</table>";
+    } else {
+        echo '0 results';
+    }
+
+    mysqli_close( $conn );
+
 }
-
-
-
-
-
-
 ?>
