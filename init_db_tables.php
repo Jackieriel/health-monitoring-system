@@ -49,10 +49,10 @@ $sql_patient_test = 'CREATE TABLE IF NOT EXISTS patient_test( ' .
 $sql_patient_problems = 'CREATE TABLE IF NOT EXISTS patient_problems( ' .
     'id INT NOT NULL AUTO_INCREMENT, ' .
     'patient_id  INT NOT NULL, ' .
-    'heart BOOLEAN DEFAULT 0, ' .
-    'kidney BOOLEAN DEFAULT 0, ' .
-    'blood_pressure INT DEFAULT 0, ' .
-    'surgery BOOLEAN DEFAULT 0, ' .
+    'heart VARCHAR(50)  NULL, ' .
+    'kidney VARCHAR(50)  NULL, ' .
+    'blood_pressure VARCHAR(50)  NULL, ' .
+    'surgery VARCHAR(50)  NULL, ' .
     'created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, ' .
     'primary key ( id ))';
 

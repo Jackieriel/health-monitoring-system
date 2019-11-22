@@ -30,6 +30,7 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                 <p>Health Monitoring System For Managing Diabetes Militus</p>
                 <!-- <input type="submit" name="" value="Login"/><br/> -->
             </div>
+
             <div class="col-md-9 register-right">
                 <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                     <li class="nav-item">
@@ -43,51 +44,54 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h3 class="register-heading primary">Patient's medical Test</h3>
+                        <h3 class="register-heading primary">Patient's medical Problems</h3>
 
                         <form method="post" action="server.php" class="row register-form">
                             <div class="col-12"><?php include('../include/errors.php'); ?>
                             </div>
                             <!-- <input type="hidden" name="role" value="patient"> -->
-                            <input type="hidden" name="form_type" value="medical_test">
-                            
+                            <input type="hidden" name="form_type" value="patient_problem">
+
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="number" name="hba1c" class="form-control" required
-                                        placeholder="HBA1C">
+                                    <select class="form-control" name="heart" required>
+                                        <option class="hidden" selected disabled>Heart Problem ?</option>
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="number" name="fbs" required class="form-control" required
-                                        placeholder="FBS (Fasting Blood Suger)">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="number" name="gtt" required class="form-control" required
-                                        placeholder="GTT (Glucose Tolorance Test)">
+                                    <select class="form-control" name="kidney" required>
+                                        <option class="hidden" selected disabled>kidney Problem ?</option>
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
                                 </div>
                             </div>
 
-                            
+
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="number" name="ug" class="form-control" required placeholder="UG">
+                                    <select class="form-control" name="blood_pressure" required>
+                                        <option class="hidden" selected disabled>High Blood Pressure ?</option>
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="number" name="keton" class="form-control" required required
-                                        placeholder="Keton (Ketonic Level)">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="number" name="chol" class="form-control" required required
-                                        placeholder="(CHOL (Cholesterol Test">
+                                    <select class="form-control" name="surgery" required>
+                                        <option class="hidden" selected disabled>Surgery Problem ?</option>
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
                                 </div>
                             </div>
 
                             <!-- Right Side -->
-                            
+
                             <div class="col-12 mt-3 mb-3">
                                 <input type="submit" class="btn btn-primary btn-block btn-md" />
                             </div>

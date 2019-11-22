@@ -2,6 +2,7 @@
     --primary-color: #3b5998;
     --secondary-color: #00acee;
     --deep-primary-color: #0a2a70;
+    --deeper-primary-color:#0e1a35;
     --white-color: #fff;
     --gray-color: gray;
     --black-color: #000;
@@ -11,10 +12,10 @@ body {
     /* background: url(../images/hea.jpg); */
     background: linear-gradient(
         0deg,
-        rgba(176, 181, 185, 0.3),
+        rgba(4, 18, 31, 0.3),
         rgba(105, 166, 240, 0.3)
       ),
-      url("../images/health.jpeg");
+      url("../images/health4.jpeg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -127,13 +128,13 @@ body {
   }
 
   ul li a{
-      color: #fff;
+      color: var(--white-color);
       font-weight: bold;
       text-decoration: none !important;
   }
 
   ul li a:hover{
-    color: var(--secondary-color);
+    color: var(--deeper-primary-color);
     font-weight: bold;
 }
 

@@ -1,4 +1,9 @@
-
+<?php 
+session_start();
+if (empty($_SESSION['admin']) OR empty($_SESSION['role'])) {
+	header("Location: ../index.php");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +29,7 @@
             <div class="col-md-9 register-right">
                 <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="dashboard.php" role="tab"
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="index.php" role="tab"
                             aria-controls="home" aria-selected="true">Main Menu</a>
                     </li>
                     <li class="nav-item">

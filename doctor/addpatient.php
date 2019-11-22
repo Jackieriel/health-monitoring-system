@@ -36,7 +36,7 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
             <div class="col-md-9 register-right">
                 <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="dashboard.php" role="tab"
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="index.php" role="tab"
                             aria-controls="home" aria-selected="true">Main Menu</a>
                     </li>
                     <li class="nav-item">
@@ -48,8 +48,8 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <h3 class="register-heading primary">Patient's Registration Form</h3>
 
-                        <form method="post" action="addpatient.php" class="row register-form">
-                            <div class="col-12">
+                        <form method="post" action="server.php" class="row register-form">
+                            <div class="col-12"><?php include('../include/errors.php'); ?>
                             </div>
                             <input type="hidden" name="role" value="patient">
                             <input type="hidden" name="form_type" value="patient">
@@ -125,38 +125,9 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                                 </div>
                             </div>
                             <div class="col-12 mt-3 mb-3">
-                                <input type="submit" name="btn" class="btn btn-primary btn-block btn-md" />
+                                <input type="submit" class="btn btn-primary btn-block btn-md" />
                             </div>
                         </form>
-                        <div class="text-center">
-                        <?php 
-                            extract($_POST);
-                            if (isset($btn) && 
-                            !empty($username) && 
-                            !empty($email) &&
-                            !empty($password_1)&&
-                            !empty($password_2)&&
-                            !empty($surname)&&
-                            !empty($other_names)&&
-                            !empty($date_of_birth) && 
-                            !empty($height)&&
-                            !empty($weight)&&
-                            !empty($gender)&&
-                            !empty($phone) && 
-                            !empty($address) && 
-                            !empty($doctor_name))
-
-                            if ( $password_1 != $password_2 ) {
-                                // echo "<b style='color:red;font-size:14px;font-family:Arial;'>Password Does Not Match, Form Not Submitted</b>";
-                                echo "<script> alert('Password Does Not Match, Form Not Submitted')</script>";
-                            }
-                            else
-                            {
-                                // require "../include/doctor.php";
-                                addpatient();
-                            }
-			            ?>
-                        </div>
                         
                     </div>
                 </div>

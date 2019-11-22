@@ -1,3 +1,7 @@
+<?php
+    require "../include/doctor.php";
+?>
+
 <?php 
 session_start();
 if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
@@ -5,116 +9,167 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
 }
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Patients Details</title>
-    <link rel="stylesheet" href="../styles/viewpatient.css">
+    <meta charset="utf-8">
+    <title>Health Monitoring System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../bootstrap/fontawesome.css">
-    <link rel="stylesheet" href="../styles/table.css">
+    <link rel="stylesheet" href="../styles/hms.css">
 </head>
-<body class="home">
-    <div class="container-fluid display-table">
-        <div class="row display-table-row">
-            <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
-                <div class="logo">
-                    <a hef="index.php"><i class="fa fa-home"></i></a>
-                </div>
-                <div class="navi">
-                    <ul>
-                        <li class="active"><a href="index.php"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
-                        <li><a href="viewpatients.php"><i class="fa fa-database" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Patient Record</span></a></li>
-                        <li><a href="viewmedicaltest.php"><i class="fa fa-database" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Medical Test Record</span></a></li>
-                        <li><a href="viewpatientProblem.php"><i class="fa fa-database" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Medical Problem</span></a></li>
-                        <li><a href="viewrealtime.php"><i class="fa fa-database" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Vital Record</span></a></li>
-                        <li><a href="edit_record"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Edit Records</span></a></li>
-                    </ul>
-                </div>
+
+<body>
+    <div class="container register">
+        <marquee behavior="" direction="left" class="white">Welcome to Health Monitoring System</marquee>
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="../images/medical.png" alt="" />
+                <h3>FBHMS</h3>
+                <p>Health Monitoring System For Managing Diabetes Militus</p>
+                <img id="output_image"/>
+                <!-- <input type="submit" name="" value="Login"/><br/> -->
             </div>
-            <div class="col-md-10 col-sm-11 display-table-cell v-align">
-                <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-                <div class="row">
-                    <header>
-                        <div class="col-md-7">
-                            <nav class="navbar-default pull-left">
-                                <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu" aria-expanded="false">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
+            <div class="col-md-9 register-right">
+                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="index.php" role="tab"
+                            aria-controls="home" aria-selected="true">Main Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="../logout.php" role="tab"
+                            aria-controls="profile" aria-selected="false">Logout</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading primary">Patient's Registration Form</h3>
+
+                        <form method="post" action="addpatient.php" class="row register-form">
+                            <div class="col-12">
+                            </div>
+                            <input type="hidden" name="role" value="patient">
+                            <input type="hidden" name="form_type" value="patient">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="username" class="form-control" required
+                                        placeholder="Username">
                                 </div>
-                            </nav>
-                            <div class="search hidden-xs hidden-sm">
-                                <input type="text" placeholder="Search" id="search">
+                                <div class="form-group">
+                                    <input type="password" name="password_1" required class="form-control" required
+                                        placeholder="Password">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="header-rightside">
-                                <ul class="list-inline header-top pull-right">
-                                    <li><a href="#"><i class="fa fa-user-plus fa-4x"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-sign-out fa-4x"></i></a></li>
-                                </ul>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" name="email" class="form-control" required placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password_2" class="form-control" required required
+                                        placeholder="Confirm Password">
+                                </div>
                             </div>
+                            <div class="mb-3">
+                                <hr>
+                            </div>
+                            <hr class="mb-3 red">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="surname" class="form-control" required
+                                        placeholder="Last name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="other_names" class="form-control" required
+                                        placeholder="Other names">
+                                </div>
+                                <div class="form-group">
+                                    <input type="date" name="date_of_birth" class="form-control" required
+                                        placeholder="Date of Birth">
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" name="height" class="form-control" required
+                                        placeholder="Height">
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" name="weight" class="form-control" required
+                                        placeholder="Body Weight">
+                                </div>
+                            </div>
+                            <!-- Right Side -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select class="form-control" name="gender" required>
+                                        <option class="hidden" selected disabled>Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" name="phone" class="form-control" minlength="11" maxlength="14"
+                                        required placeholder="Phone number">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="address" class="form-control" required
+                                        placeholder="Home Address">
+                                </div>
+                                <div class="form-group margin-none">
+                                    <input type="text" name="doctor_name" class="form-control" required
+                                        placeholder="Please Enter Doctor's Name"><br>
+                                </div>
+                                <div class="form-group margin-none">
+                                    <input type="file" name="image" onchange="preview_image(event)" >
+                                </div>
+                            </div>
+                            <div class="col-12 mt-3 mb-3">
+                                <input type="submit" name="btn" class="btn btn-primary btn-block btn-md" />
+                            </div>
+                        </form>
+                        <div class="text-center">
+                        <?php 
+                            extract($_POST);
+                            if (isset($btn) && 
+                            !empty($username) && 
+                            !empty($email) &&
+                            !empty($password_1)&&
+                            !empty($password_2)&&
+                            !empty($surname)&&
+                            !empty($other_names)&&
+                            !empty($date_of_birth) && 
+                            !empty($height)&&
+                            !empty($weight)&&
+                            !empty($gender)&&
+                            !empty($phone) && 
+                            !empty($address) && 
+                            !empty($doctor_name))
+
+                            if ( $password_1 != $password_2 ) {
+                                // echo "<b style='color:red;font-size:14px;font-family:Arial;'>Password Does Not Match, Form Not Submitted</b>";
+                                echo "<script> alert('Password Does Not Match, Form Not Submitted')</script>";
+                            }
+                            else
+                            {
+                                // require "../include/doctor.php";
+                                addpatient();
+                            }
+			            ?>
                         </div>
-                    </header>
-                </div>
-                <div class="user-dashboard">
-                    <h1>Welcome</h1>
-                    <div class="row">
-                        <div class="col gutter">
-							<div class="wrapper">
-								<div class="right"><br>
-									<table class="table">
-										<?php 
-											require '../include/doctor.php';
-											viewpatient();
-										?>
-									</table><br><br>
-									
-								</div>
-							</div>
-                            
-                        </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
-
-
-    <!-- Modal -->
-    <div id="add_project" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header login-header">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h4 class="modal-title">Add Project</h4>
-                </div>
-                <div class="modal-body">
-                            <input type="text" placeholder="Project Title" name="name">
-                            <input type="text" placeholder="Post of Post" name="mail">
-                            <input type="text" placeholder="Author" name="passsword">
-                            <textarea placeholder="Desicrption"></textarea>
-                    </div>
-                <div class="modal-footer">
-                    <button type="button" class="cancel" data-dismiss="modal">Close</button>
-                    <button type="button" class="add-project" data-dismiss="modal">Save</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    <?php
+    include_once "../include/footer.html";
+?>
     <script src="../script/hms.js"></script>
-    <script src="../script/jquery.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+
 </body>
+
 </html>
