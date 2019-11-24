@@ -19,6 +19,8 @@ $sql_users = 'CREATE TABLE IF NOT EXISTS users( ' .
     'join_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, ' .
     'primary key ( id ))';
 
+
+
 $sql_patients = 'CREATE TABLE IF NOT EXISTS patients( ' .
     'id INT NOT NULL AUTO_INCREMENT, ' .
     'surname VARCHAR(20) NOT NULL, ' .

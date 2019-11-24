@@ -146,6 +146,34 @@ function viewPatientproblem(){
 
 }
 
+function updatepatient()
+{
+	$id = $_GET['id'];
+    $email = mysqli_real_escape_string( $db, $_POST['email'] );
+    $surname = mysqli_real_escape_string( $db, $_POST['surname'] );
+    $other_names = mysqli_real_escape_string( $db, $_POST['other_names'] );
+    $date_of_birth = mysqli_real_escape_string( $db, $_POST['date_of_birth'] );
+    $height = mysqli_real_escape_string( $db, $_POST['height'] );
+    $weight = mysqli_real_escape_string( $db, $_POST['weight'] );
+    $gender = mysqli_real_escape_string( $db, $_POST['gender'] );
+    $phone = mysqli_real_escape_string( $db, $_POST['phone'] );
+    $address = mysqli_real_escape_string( $db, $_POST['address'] );
+    $doctor_name = mysqli_real_escape_string( $db, $_POST['doctor_name'] );
+
+	require_once "db.php";
+
+	$sql = "UPDATE patients SET `email`='$email',`surname`='$surname',`other_names`='$other_names',`date_of_birth`='$date_of_birth',`height`='$height',`weight`='$weight',`gender`='$gender',`address`='$address',`phone`='$phone',`doctor_name`='$doctor_name' WHERE `id`='$id'";
+	//$sql = "INSERT INTO hospital.` VALUES ('','$fname','$sname','$email','$address','$phone','$gender','$bloodgroup','$birthyear')";
+	$query = mysqli_query($conn,$sql);
+	if (!empty($query)) {
+		echo "<br><b style='color:#008080;font-size:14px;font-family:Arial;'>Patient is Succesifully Updated</b><br><br>";
+	}
+	else{
+		echo mysqli_error();
+	}
+}
 
 ?>
+
+
 
