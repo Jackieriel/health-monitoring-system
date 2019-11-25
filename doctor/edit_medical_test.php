@@ -52,7 +52,7 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                             <div class="col-12"><?php include('../include/errors.php'); ?>
                             </div>
                             <!-- <input type="hidden" name="role" value="patient"> -->
-                            <input type="hidden" name="form_type" value="medical_test">
+                            <input type="hidden" name="form_type" value="edit_medical_test">
                             
                             <div class="col-md-6">
                                 <div class="form-group">

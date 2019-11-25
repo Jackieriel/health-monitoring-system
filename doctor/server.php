@@ -1,5 +1,6 @@
 <?php
 require_once '../include/db.php';
+
 // require_once 'session.php';
 // variable declaration
 // $username = '';
@@ -202,9 +203,10 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'patient_problem' )
 }
 
 // Update medical Test
-if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'medical_test' ) {
+if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'edit_medical_test' ) {
     // receive all input values from the form
-    $patient_id = $_SESSION['patient_id'];
+
+    $patient_id = $_SESSION['edit_patient']['id'];
     $hba1c = mysqli_real_escape_string( $db, $_POST['hba1c'] );
     $fbs = mysqli_real_escape_string( $db, $_POST['fbs'] );
     $gtt = mysqli_real_escape_string( $db, $_POST['gtt'] );
@@ -235,19 +237,12 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'medical_test' ) {
 
     // register user if there are no errors in the form
     if ( count( $errors ) == 0 ) {
-        $query = "INSERT INTO patient_test (patient_id, hba1c, fbs, gtt,ug,keton,chol)
-                  VALUES(' $patient_id', '$hba1c', '$fbs', '$gtt' ,'$ug', '$keton' , '$chol')";
-        $mysqli_query = mysqli_query( $db, $query );
+        $query = "UPDATE patient_test SET hba1c = '$hba1c', fbs = '$fbs', gtt = '$gtt',ug = '$ug',keton = '$keton',chol = '$chol' WHERE patient_id = $patient_id";
 
-        //    var_dump(mysqli_insert_id($conn));
-
-        //Store last session patient ID
-//        $_SESSION['patient_id'] = mysqli_insert_id( $conn );
-
-
-        // $_SESSION['username'] = $username;
-        // $_SESSION['success'] = 'You are now logged in';
-        header( 'location: patient_problem.php' );
+        if(mysqli_query( $db, $query )){
+            header( "location: edit_patient.php?id={$patient_id}");
+        }
     }
+
     mysqli_close( $conn );
 }
