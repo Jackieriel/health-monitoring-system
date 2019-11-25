@@ -175,6 +175,51 @@ function updatepatient()
 	}
 }
 
+function viewPatientrealtime() {
+    require 'db.php';
+    $sql = "SELECT patients.id,patients.surname,patients.other_names,patient_logs.* From patients INNER JOIN patient_logs ON patients.id = patient_logs.patient_id";
+    $query = mysqli_query( $conn, $sql );
+
+
+    if ( mysqli_num_rows( $query ) > 0 ) {
+        // echo "<table  border='1' style='width:100%'>
+        echo "
+        <thead>
+            <tr>
+                <th >Patient ID</th>
+                <th >Surname</th>
+                <th >Other Names</th>
+                <th >Blood Pressure</th>
+                <th >Blood Glucose</th>
+                <th >Heart Rate</th>
+                <th >Remark</th>
+                <th >Time Stamp</th>
+            </tr>
+        </thead>";
+        // output data of each row
+        while( $row = mysqli_fetch_assoc( $query ) ) {
+            echo "<tbody>".
+                    "<tr>".
+                            " <td>".$row["id"]."</td>".
+                            " <td>".$row["surname"]."</td>".
+                            " <td>".$row["other_names"]."</td>".
+                            " <td>".$row["blood_pressure"]."</td>".
+                            " <td>".$row["blood_glucose"]."</td>".
+                            " <td>".$row["heart_rate"]."</td>".
+                            " <td>".$row["remark"]."</td>".
+                            "  <td>".$row["created_at"]."</td>".
+                    "</tr>".
+                 "</tbody>" ;
+        }
+        // echo "</table>";
+    } else {
+        echo 'No Patient Record found';
+    }
+
+    mysqli_close( $conn );
+
+}
+
 ?>
 
 

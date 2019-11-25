@@ -114,7 +114,7 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'patient' ) {
 
     // register user if there are no errors in the form
     if ( count( $errors ) < 1 ) {
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+        if (move_uploaded_file($target_file, $_FILES["image"]["tmp_name"])) {
             echo "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
         } else {
             echo "Sorry, there was an error uploading your file.";
