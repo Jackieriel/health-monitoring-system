@@ -61,7 +61,9 @@ function viewPatientProfile(){
     if ( mysqli_num_rows( $query ) > 0 ) {
         // output data of each row
         while( $row = mysqli_fetch_assoc( $query ) ) {
-            echo "          <p>".$row["image"]."</p>";
+            // echo " <img src = '$row["image"]'> ";
+            $image = $row['image'];
+            echo "<img src='$image' >";
             echo "          <p>".$row["surname"]. ' '.$row["other_names"]."</p>".
                             " <p>"." Gender : ".$row["gender"]."</p>".
                             " <p>"."Date Of Birthday : ".$row["date_of_birth"]."</p>".
