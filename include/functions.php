@@ -22,20 +22,24 @@ function login() {
             $fetch = mysqli_fetch_array($query);
             $role = $fetch['role'];
             $name = $fetch['username'];
+            $id = $fetch['id'];
             if ( $role == 'admin' ) {
                 @session_start();
                 $_SESSION['role'] = $role;
                 $_SESSION['admin'] = $name;
+                $_SESSION['auth_id'] = $id;
                 header( 'Location: admin/' );
             } elseif ( $role == 'doctor' ) {
                 @session_start();
                 $_SESSION['role'] = $role;
                 $_SESSION['doctor'] = $name;
+                $_SESSION['auth_id'] = $id;
                 header( 'Location: doctor/' );
             } elseif ( $role == 'patient' ) {
                 @session_start();
                 $_SESSION['role'] = $role;
                 $_SESSION['reception'] = $name;
+                $_SESSION['auth_id'] = $id;
                 header( 'Location: patient/' );
             } else {
                 echo '<b>Error</b>';

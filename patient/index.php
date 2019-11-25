@@ -1,4 +1,4 @@
-<?php include('../include/patient.php') ?>
+<?php //include('../include/patient.php') ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +31,7 @@
                     <h2 class="text-center primary">Monitor Vital Signs</h2>
 
                     <input type="hidden" name="form_type" value="monitor">
+
                     <div class="form-group">
                         <input type="number" step='0.01' class="form-control" name=blood_pressure required
                             autocomplete="off" placeholder="Blood Pressure"><br>

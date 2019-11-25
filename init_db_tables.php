@@ -83,6 +83,7 @@ $sql_patient_logs  = 'CREATE TABLE IF NOT EXISTS patient_logs( ' .
     'blood_pressure  FLOAT NULL, ' .
     'blood_glucose  FLOAT NULL, ' .
     'heart_rate  FLOAT NULL, ' .
+    'remark VARCHAR(50) NOT NULL, ' .
     'patient_id INT NOT NULL, ' .
     'created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, ' .
     'primary key ( id ))';
