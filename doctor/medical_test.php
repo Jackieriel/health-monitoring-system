@@ -68,8 +68,6 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                                 </div>
                             </div>
 
-                            
-
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="number" name="ug" class="form-control" required placeholder="UG">
@@ -82,7 +80,7 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
 
                                 <div class="form-group">
                                     <input type="number" name="chol" class="form-control" required required
-                                        placeholder="(CHOL (Cholesterol Test">
+                                        placeholder="CHOL (Cholesterol Test)">
                                 </div>
                             </div>
 
@@ -105,7 +103,6 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
 
     <script src="../bootstrap/js/bootstrap.min.js"></script>
 
-    </script>
 </body>
 
 </html>

@@ -25,6 +25,7 @@ function viewpatient() {
                 <th >Address</th>
                 <th >Doctor</th>
                 <th >Date Registered</th>
+                <th >Action</th>
             </tr>
         </thead>";
         // output data of each row
@@ -42,6 +43,7 @@ function viewpatient() {
                             " <td>".$row["address"]."</td>".
                             " <td>".$row["doctor"]."</td>".
                             "  <td>".$row["created_at"]."</td>".
+                            "  <td> <a href='edit_patient.php?id=" .$row["id"]. "'>Edit</a></td>".
                     "</tr>".
                  "</tbody>" ;
         }

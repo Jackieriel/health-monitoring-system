@@ -97,22 +97,22 @@ if (empty($_SESSION['admin']) OR empty($_SESSION['role'])) {
                             </div>
                         </form>
                         <div class='text-center no-top-margin'>
-                            <?php 
+                            <?php
                                 extract($_POST);
-                                if (isset($btn) && !empty($username) 
-                                && !empty($email) 
+                                if (isset($btn) && !empty($username)
+                                && !empty($email)
                                 &&!empty($password_1)
                                 &&!empty($password_2)
                                 &&!empty($surname)
                                 &&!empty($other_names)
-                                &&!empty($phone) 
+                                &&!empty($phone)
                                 && !empty($address)) {
                                     require "../include/functions.php";
                                     addDoctor();
                             }
                             ?>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -123,7 +123,6 @@ if (empty($_SESSION['admin']) OR empty($_SESSION['role'])) {
     </script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
 
-    </script>
 </body>
 
 </html>

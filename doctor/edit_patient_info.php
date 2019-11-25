@@ -1,5 +1,7 @@
 <?php
     require "../include/doctor.php";
+include 'helper.php';
+
 ?>
 
 <?php 
@@ -48,25 +50,20 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <h3 class="register-heading primary">Patient's Registration Form</h3>
 
-                        <?php $id = $_GET['id']; ?>
+                        <?php getEditedPatientId();?>
                         
-                        <form method="post" action="edit_patient_info.php?id=<?php echo $id; ?>" class="row register-form">
-                        <?php
-                            require "../include/db.php";
-                            $sql = "SELECT * FROM 'patients' WHERE 'id'='$id'"; 
-                            $query = mysql_query($sql,$conn);
-                            while ($row = mysql_fetch_array($query)) {
-	    				?>
+                        <form method="post" action="edit_patient_info.php" class="row register-form">
+
                             <div class="col-12"><?php include('../include/errors.php'); ?>
                             </div>
                             <input type="hidden" name="role" value="patient">
                             <input type="hidden" name="form_type" value="patient">
                             <div class="col-md-6">
-                            
+
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="email" name="email" value="<?php echo $row['email']; ?>"  class="form-control" required placeholder="Email">
+                                    <input type="email" name="email" value="<?php echo $_SESSION['edit_patient']['email']; ?>"  class="form-control" required placeholder="Email">
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -76,23 +73,23 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" name="surname" value="<?php echo $row['surname']; ?>"  class="form-control" required
+                                    <input type="text" name="surname" value="<?php echo $_SESSION['edit_patient']['surname']; ?>"  class="form-control" required
                                         placeholder="Last name">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="other_names" value="<?php echo $row['other_names']; ?>"  class="form-control" required
+                                    <input type="text" name="other_names" value="<?php echo $_SESSION['edit_patient']['other_names']; ?>"  class="form-control" required
                                         placeholder="Other names">
                                 </div>
                                 <div class="form-group">
-                                    <input type="date" name="date_of_birth" value="<?php echo $row['date_of_birth']; ?>"  class="form-control" required
+                                    <input type="date" name="date_of_birth" value="<?php echo $_SESSION['edit_patient']['date_of_birth']; ?>"  class="form-control" required
                                         placeholder="Date of Birth">
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" name="height" value="<?php echo $row['height']; ?>"  class="form-control" required
+                                    <input type="number" name="height" value="<?php echo $_SESSION['edit_patient']['height']; ?>"  class="form-control" required
                                         placeholder="Height">
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" name="weight" value="<?php echo $row['weight']; ?>"  class="form-control" required
+                                    <input type="number" name="weight" value="<?php echo $_SESSION['edit_patient']['weight']; ?>"  class="form-control" required
                                         placeholder="Body Weight">
                                 </div>
                             </div>
@@ -106,24 +103,22 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="tel" name="phone" value="<?php echo $row['phone']; ?>"  class="form-control" minlength="11" maxlength="14"
+                                    <input type="tel" name="phone" value="<?php echo $_SESSION['edit_patient']['phone']; ?>"  class="form-control" minlength="11" maxlength="14"
                                         required placeholder="Phone number">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="address" value="<?php echo $row['address']; ?>"  class="form-control" required
+                                    <input type="text" name="address" value="<?php echo $_SESSION['edit_patient']['address']; ?>"  class="form-control" required
                                         placeholder="Home Address">
                                 </div>
                                 <div class="form-group margin-none">
-                                    <input type="text" name="doctor_name" value="<?php echo $row['doctor_name']; ?>"  class="form-control" required
+                                    <input type="text" name="doctor_name" value="<?php echo $_SESSION['doctor']; ?>"  class="form-control" required
                                         placeholder="Please Enter Doctor's Name"><br>
                                 </div>
                                 <!-- <div class="form-group margin-none">
                                     <input type="file" name="image" onchange="preview_image(event)" >
                                 </div> -->
                             </div>
-                            <?php
-                        }
-                        ?>
+
                             <div class="col-12 mt-3 mb-3">
                                 <input type="submit" value="Update" name="btn" class="btn btn-primary btn-block btn-md" />
                             </div>

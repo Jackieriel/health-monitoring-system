@@ -7,6 +7,7 @@ session_start();
 if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
 	header("Location: ../index.php");
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -109,7 +110,6 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
 
     <script src="../bootstrap/js/bootstrap.min.js"></script>
 
-    </script>
 </body>
 
 </html>

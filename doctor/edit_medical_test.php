@@ -1,5 +1,7 @@
 <?php
     require "../include/doctor.php";
+    include 'helper.php';
+
 ?>
 
 <?php 
@@ -41,6 +43,7 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                             aria-controls="profile" aria-selected="false">Logout</a>
                     </li>
                 </ul>
+                <?php getPatientMedicalRecords();?>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <h3 class="register-heading primary">Edit Patient's medical Test</h3>
@@ -53,17 +56,17 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                             
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="number" name="hba1c" class="form-control" required
+                                    <input type="number" name="hba1c" class="form-control" required value="<?php echo $_SESSION['edit_patient_test']['hba1c']?>"
                                         placeholder="HBA1C">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="number" name="fbs" required class="form-control" required
+                                    <input type="number" name="fbs" class="form-control" required value="<?php echo $_SESSION['edit_patient_test']['fbs']?>"
                                         placeholder="FBS (Fasting Blood Suger)">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="number" name="gtt" required class="form-control" required
+                                    <input type="number" name="gtt" class="form-control" required value="<?php echo $_SESSION['edit_patient_test']['gtt']?>"
                                         placeholder="GTT (Glucose Tolorance Test)">
                                 </div>
                             </div>
@@ -72,16 +75,16 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="number" name="ug" class="form-control" required placeholder="UG">
+                                    <input type="number" name="ug" class="form-control" required value="<?php echo $_SESSION['edit_patient_test']['ug']?>" placeholder="UG">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="number" name="keton" class="form-control" required required
+                                    <input type="number" name="keton" class="form-control" required value="<?php echo $_SESSION['edit_patient_test']['keton']?>"
                                         placeholder="Keton (Ketonic Level)">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="number" name="chol" class="form-control" required required
+                                    <input type="number" name="chol" class="form-control" required value="<?php echo $_SESSION['edit_patient_test']['chol']?>"
                                         placeholder="(CHOL (Cholesterol Test">
                                 </div>
                             </div>
@@ -105,7 +108,6 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
 
     <script src="../bootstrap/js/bootstrap.min.js"></script>
 
-    </script>
 </body>
 
 </html>

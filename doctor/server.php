@@ -7,6 +7,7 @@ $db = 'jackieriel';
 // $email = '';
 $errors = array();
 // $_SESSION['success'] = '';
+@session_start();
 
 //Save patient Id into session
 
@@ -87,7 +88,6 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'patient' ) {
             $query2 = "INSERT INTO patients (surname, other_names, gender, date_of_birth, height, weight, phone, address, doctor, user_id)
               VALUES('$surname', '$other_names', '$gender', '$date_of_birth', '$height', '$weight', '$phone', '$address', '$doctor_name', $user_id)";
             mysqli_query( $conn, $query2 );
-
             $patient_id = mysqli_insert_id( $conn );
 
             $_SESSION['patient_id'] = $patient_id;
@@ -145,13 +145,13 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'medical_test' ) {
     // register user if there are no errors in the form
     if ( count( $errors ) == 0 ) {
         $query = "INSERT INTO patient_test (patient_id, hba1c, fbs, gtt,ug,keton,chol)
-                  VALUES('$_SESSION[patient_id]', '$hba1c', '$fbs', '$gtt' ,'$ug', '$keton' , '$chol')";
+                  VALUES(' $patient_id', '$hba1c', '$fbs', '$gtt' ,'$ug', '$keton' , '$chol')";
        $mysqli_query = mysqli_query( $db, $query );
        
     //    var_dump(mysqli_insert_id($conn));
 
         //Store last session patient ID
-        $_SESSION['patient_id'] = mysqli_insert_id( $conn );
+//        $_SESSION['patient_id'] = mysqli_insert_id( $conn );
        
 
         // $_SESSION['username'] = $username;
@@ -197,6 +197,57 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'patient_problem' )
         echo "<script type='text/javascript'>alert('$message');</script>";
 
         header( 'location: index.php' );
+    }
+    mysqli_close( $conn );
+}
+
+// Update medical Test
+if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'medical_test' ) {
+    // receive all input values from the form
+    $patient_id = $_SESSION['patient_id'];
+    $hba1c = mysqli_real_escape_string( $db, $_POST['hba1c'] );
+    $fbs = mysqli_real_escape_string( $db, $_POST['fbs'] );
+    $gtt = mysqli_real_escape_string( $db, $_POST['gtt'] );
+    $ug = mysqli_real_escape_string( $db, $_POST['ug'] );
+    $keton = mysqli_real_escape_string( $db, $_POST['keton'] );
+    $chol = mysqli_real_escape_string( $db, $_POST['chol'] );
+
+
+    // form validation: ensure that the form is correctly filled
+    if ( empty( $hba1c ) ) {
+        array_push( $errors, 'HBA1C value  is required' );
+    }
+    if ( empty( $fbs ) ) {
+        array_push( $errors, 'FBS value is required' );
+    }
+    if ( empty( $gtt ) ) {
+        array_push( $errors, 'GTT value is required' );
+    }
+    if ( empty( $ug ) ) {
+        array_push( $errors, 'UG value is required' );
+    }
+    if ( empty( $keton ) ) {
+        array_push( $errors, 'Keton value is required' );
+    }
+    if ( empty( $chol ) ) {
+        array_push( $errors, 'Chol value is required' );
+    }
+
+    // register user if there are no errors in the form
+    if ( count( $errors ) == 0 ) {
+        $query = "INSERT INTO patient_test (patient_id, hba1c, fbs, gtt,ug,keton,chol)
+                  VALUES(' $patient_id', '$hba1c', '$fbs', '$gtt' ,'$ug', '$keton' , '$chol')";
+        $mysqli_query = mysqli_query( $db, $query );
+
+        //    var_dump(mysqli_insert_id($conn));
+
+        //Store last session patient ID
+//        $_SESSION['patient_id'] = mysqli_insert_id( $conn );
+
+
+        // $_SESSION['username'] = $username;
+        // $_SESSION['success'] = 'You are now logged in';
+        header( 'location: patient_problem.php' );
     }
     mysqli_close( $conn );
 }
