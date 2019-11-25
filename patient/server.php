@@ -42,6 +42,8 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'monitor' ) {
                     VALUES('$blood_pressure', '$blood_glucose', '$heart_rate' , '$remark','$patient_id')";
         mysqli_query( $db, $query );
 
+        $_SESSION['remark'] = $remark;
+
         header( 'Location: index.php' );
 
     }

@@ -1,4 +1,4 @@
-<?php //include('../include/patient.php') ?>
+<?php @session_start()?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +14,12 @@
 </head>
 
 <body>
+    <?php
+        if(isset($_SESSION['remark'])){
+            echo '<script language="javascript">alert("'.$_SESSION['remark'].'"); </script>';
+            unset($_SESSION['remark']);
+        }
+    ?>
     <div class="container login-container">
         <div class="row">
             <div class="col-md-6 login-form-1 bg-white">
