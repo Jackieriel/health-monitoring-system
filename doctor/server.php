@@ -37,6 +37,41 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'patient' ) {
     $address = mysqli_real_escape_string( $db, $_POST['address'] );
     $doctor_name = mysqli_real_escape_string( $db, $_POST['doctor_name'] );
 
+
+    //    Image validation
+    $target_dir = "../uploads/";
+    $target_file = $target_dir . basename($_FILES["image"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+    // Check if image file is a actual image or fake image
+    $check = getimagesize($_FILES["image"]["tmp_name"]);
+    if($check !== false) {
+        $uploadOk = 1;
+    } else {
+        array_push( $errors, "File is not an image.");
+        $uploadOk = 0;
+    }
+
+    if (file_exists($target_file)) {
+        array_push( $errors, "Sorry, file already exists.");
+        $uploadOk = 0;
+    }
+
+    // Check file size
+    if ($_FILES["image"]["size"] > 50000000) {
+        array_push( $errors, "Sorry, your file is too large.");
+        $uploadOk = 0;
+    }
+
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+        array_push( $errors, "Sorry, only JPG, JPEG, PNG & GIF files are allowed.");
+        $uploadOk = 0;
+    }
+
+
+
     // form validation: ensure that the form is correctly filled
     if ( empty( $username ) ) {
         array_push( $errors, 'Username is required' );
@@ -68,13 +103,22 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'patient' ) {
     if ( empty( $address ) ) {
         array_push( $errors, 'Address of patient is required ' );
     }
+    if ( empty( $address ) ) {
+        array_push( $errors, 'Address of patient is required ' );
+    }
 
     if ( $password_1 != $password_2 ) {
         array_push( $errors, 'The two passwords do not match' );
     }
 
+
     // register user if there are no errors in the form
     if ( count( $errors ) < 1 ) {
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+            echo "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
 
         // create user account for patient
         $password = md5( $password_1 );
@@ -86,18 +130,14 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'patient' ) {
 
         if ( $user_id > 0 ) {
             // create patient profile
-            $query2 = "INSERT INTO patients (surname, other_names, gender, date_of_birth, height, weight, phone, address, doctor, user_id)
-              VALUES('$surname', '$other_names', '$gender', '$date_of_birth', '$height', '$weight', '$phone', '$address', '$doctor_name', $user_id)";
+            $query2 = "INSERT INTO patients (surname, other_names, gender, date_of_birth, height, weight, phone, address, doctor, user_id, image)
+              VALUES('$surname', '$other_names', '$gender', '$date_of_birth', '$height', '$weight', '$phone', '$address', '$doctor_name', $user_id, '$target_file')";
             mysqli_query( $conn, $query2 );
             $patient_id = mysqli_insert_id( $conn );
 
             $_SESSION['patient_id'] = $patient_id;
-            //save the value in the $_SESSION
-        //    echo "my pat id" ;var_dump("$_SESSION[patient_id]");
-
         }
 
-        // $_SESSION['success'] = 'Patient registration successful';
         header( 'location: medical_test.php' );
     } else {
         for ( $i = 0; $i < count( $errors );

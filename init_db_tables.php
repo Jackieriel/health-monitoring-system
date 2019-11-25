@@ -31,6 +31,7 @@ $sql_patients = 'CREATE TABLE IF NOT EXISTS patients( ' .
     'weight VARCHAR(10) NULL, ' .
     'phone  VARCHAR(50) NULL, ' .
     'address  VARCHAR(50) NULL, ' .
+    'image  VARCHAR(50) NULL, ' .
     'doctor  VARCHAR(50) NULL, ' .
     'user_id  VARCHAR(50) NULL, ' .
     'created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, ' .

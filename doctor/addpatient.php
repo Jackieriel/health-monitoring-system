@@ -48,7 +48,7 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <h3 class="register-heading primary">Patient's Registration Form</h3>
 
-                        <form method="post" action="server.php" class="row register-form">
+                        <form method="post" action="server.php" class="row register-form" enctype="multipart/form-data">
                             <div class="col-12"><?php include('../include/errors.php'); ?>
                             </div>
                             <input type="hidden" name="role" value="patient">
