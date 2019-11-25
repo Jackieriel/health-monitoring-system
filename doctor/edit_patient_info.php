@@ -56,16 +56,7 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
 
                             <div class="col-12"><?php include('../include/errors.php'); ?>
                             </div>
-                            <input type="hidden" name="role" value="patient">
-                            <input type="hidden" name="form_type" value="patient">
-                            <div class="col-md-6">
-
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="email" name="email" value="<?php echo $_SESSION['edit_patient']['email']; ?>"  class="form-control" required placeholder="Email">
-                                </div>
-                            </div>
+                            <input type="hidden" name="form_type" value="edit_patient">
                             <div class="mb-3">
                                 <hr>
                             </div>
@@ -74,7 +65,7 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="text" name="surname" value="<?php echo $_SESSION['edit_patient']['surname']; ?>"  class="form-control" required
-                                        placeholder="Last name">
+                                        placeholder="Surname Name">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" name="other_names" value="<?php echo $_SESSION['edit_patient']['other_names']; ?>"  class="form-control" required
@@ -98,8 +89,8 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                                 <div class="form-group">
                                     <select class="form-control" name="gender" required>
                                         <option class="hidden" selected disabled>Select Gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
+                                        <option <?php if($_SESSION['edit_patient']['gender'] == 'male'){ echo 'selected';}?> value="male">Male</option>
+                                        <option <?php if($_SESSION['edit_patient']['gender'] == 'female'){ echo 'selected';}?> value="female">Female</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -111,7 +102,7 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                                         placeholder="Home Address">
                                 </div>
                                 <div class="form-group margin-none">
-                                    <input type="text" name="doctor_name" value="<?php echo $_SESSION['doctor']; ?>"  class="form-control" required
+                                    <input type="text" name="doctor_name" value="<?php echo $_SESSION['edit_patient']['doctor']; ?>"  class="form-control" required
                                         placeholder="Please Enter Doctor's Name"><br>
                                 </div>
                                 <!-- <div class="form-group margin-none">

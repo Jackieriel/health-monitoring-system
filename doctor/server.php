@@ -109,7 +109,66 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'patient' ) {
     mysqli_close( $conn );
 }
 
-// ...
+//Update Patient
+if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'edit_patient' ) {
+
+    // receive all input values from the form
+    $surname = mysqli_real_escape_string( $db, $_POST['surname'] );
+    $other_names = mysqli_real_escape_string( $db, $_POST['other_names'] );
+    $date_of_birth = mysqli_real_escape_string( $db, $_POST['date_of_birth'] );
+    $height = mysqli_real_escape_string( $db, $_POST['height'] );
+    $weight = mysqli_real_escape_string( $db, $_POST['weight'] );
+    $gender = mysqli_real_escape_string( $db, $_POST['gender'] );
+    $phone = mysqli_real_escape_string( $db, $_POST['phone'] );
+    $address = mysqli_real_escape_string( $db, $_POST['address'] );
+    $doctor_name = mysqli_real_escape_string( $db, $_POST['doctor_name'] );
+
+    // form validation: ensure that the form is correctly filled
+    if ( empty( $surname ) ) {
+        array_push( $errors, 'Surname is required' );
+    }
+    if ( empty( $date_of_birth ) ) {
+        array_push( $errors, 'Date of Birth is required' );
+    }
+    if ( empty( $height ) ) {
+        array_push( $errors, 'Height of patient is required' );
+    }
+    if ( empty( $gender ) ) {
+        array_push( $errors, 'Gender is required' );
+    }
+    if ( empty( $weight ) ) {
+        array_push( $errors, 'Body weight is required or average' );
+    }
+    if ( empty( $phone ) ) {
+        array_push( $errors, 'Phone is required ' );
+    }
+    if ( empty( $address ) ) {
+        array_push( $errors, 'Address of patient is required ' );
+    }
+    if ( empty( $doctor_name ) ) {
+        array_push( $errors, 'Address of patient is required ' );
+    }
+
+    // update user if there are no errors in the form
+    if ( count( $errors ) < 1 ) {
+        // update patient profile
+        $query = "UPDATE patients SET surname = '$surname', other_names = '$other_names', gender = '$gender',
+                    date_of_birth = '$date_of_birth', height = '$height', weight = '$weight', phone ='$phone', 
+                    address = '$address', doctor = '$doctor_name' WHERE id = {$_SESSION['edit_patient']['id']}";
+
+        if(mysqli_query( $conn, $query )){
+            header( "location: edit_patient.php?id={$_SESSION['edit_patient']['id']}");
+        }
+
+    } else {
+        for ( $i = 0; $i < count( $errors );
+              $i++ ) {
+            echo $errors[$i] . '<br>';
+        }
+    }
+
+    mysqli_close( $conn );
+}
 
 // Add medical Test
 if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'medical_test' ) {

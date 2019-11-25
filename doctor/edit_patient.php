@@ -6,6 +6,11 @@ session_start();
 if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
 	header("Location: ../index.php");
 }
+
+
+unset($_SESSION['edit_patient']);
+unset($_SESSION['edit_patient_test']);
+unset($_SESSION['edit_patient_problems']);
 ?>
 
 
