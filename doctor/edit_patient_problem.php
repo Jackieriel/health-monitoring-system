@@ -27,7 +27,7 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
         <marquee behavior="" direction="left" class="white">Welcome to Health Monitoring System</marquee>
         <div class="row">
             <div class="col-md-3 register-left">
-                <img src="images/medical.png" alt="" />
+                <img src="../images/medical.png" alt="" />
                 <h3>FBHMS</h3>
                 <p>Health Monitoring System For Managing Diabetes Militus</p>
                 <!-- <input type="submit" name="" value="Login"/><br/> -->
@@ -54,7 +54,7 @@ if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
                             </div>
 <!--                            --><?php //if(count($errors) > 0):?>
                             <!-- <input type="hidden" name="role" value="patient"> -->
-                            <input type="hidden" name="form_type" value="patient_problem">
+                            <input type="hidden" name="form_type" value="edit_patient_problem">
 
                             <div class="col-md-6">
                                 <div class="form-group">

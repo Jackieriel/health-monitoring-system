@@ -202,7 +202,7 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'patient_problem' )
     mysqli_close( $conn );
 }
 
-// Update medical Test
+//Update Medical Test
 if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'edit_medical_test' ) {
     // receive all input values from the form
 
@@ -246,3 +246,38 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'edit_medical_test'
 
     mysqli_close( $conn );
 }
+
+//Update Medical Problems
+if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'edit_patient_problem' ) {
+    // receive all input values from the form
+    $patient_id = $_SESSION['edit_patient']['id'];
+    $heart = mysqli_real_escape_string( $db, $_POST['heart'] );
+    $kidney = mysqli_real_escape_string( $db, $_POST['kidney'] );
+    $blood_pressure = mysqli_real_escape_string( $db, $_POST['blood_pressure'] );
+    $surgery = mysqli_real_escape_string( $db, $_POST['surgery'] );
+
+    // form validation: ensure that the form is correctly filled
+    if ( empty( $heart ) ) {
+        array_push( $errors, 'Heart Problem record is required' );
+    }
+    if ( empty( $kidney ) ) {
+        array_push( $errors, 'Kidney problem record is required' );
+    }
+    if ( empty( $blood_pressure ) ) {
+        array_push( $errors, 'High blood pressure recordnis required' );
+    }
+    if ( empty( $surgery ) ) {
+        array_push( $errors, 'Surrgery record is required' );
+    }
+
+    // register user if there are no errors in the form
+    if ( count( $errors ) == 0 ) {
+        $query = "UPDATE patient_problems SET heart = '$heart', kidney = '$kidney', blood_pressure = '$blood_pressure', surgery = '$surgery' WHERE patient_id = $patient_id";
+
+        if(mysqli_query( $db, $query )){
+            header( "location: edit_patient.php?id={$patient_id}");
+        }
+    }
+    mysqli_close( $conn );
+}
+
