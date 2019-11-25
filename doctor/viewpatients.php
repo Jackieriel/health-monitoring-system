@@ -33,7 +33,7 @@
                             <li><a href="viewmedicaltest.php"><i class="fa fa-database" aria-hidden="true"></i><span class="hidden-xs hidden-sm"> Medical Test Record</span></a></li>
                             <li><a href="viewpatientProblem.php"><i class="fa fa-database" aria-hidden="true"></i><span class="hidden-xs hidden-sm"> Medical Problem</span></a></li>
                             <li><a href="viewrealtime.php"><i class="fa fa-database" aria-hidden="true"></i><span class="hidden-xs hidden-sm"> Vital Record</span></a></li>
-                            <li><a href="edit_record"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"> Edit Records</span></a></li>
+                            <li><a href="viewpatients.php"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"> Edit Records</span></a></li>
                     </ul>
           </div>
         </div>

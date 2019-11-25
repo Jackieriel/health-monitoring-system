@@ -62,13 +62,11 @@
                 </h2> -->
 
                 <div class="profiling text-white">
-                    <h4>Personal Profile</h4>
-                    <img src="images/Jackieriel1.jpg" alt="profile Pic">
-                    <p>Jonah Jackson J</p>
-                    <p>Date of birth</p>
-                    <p>Gender</p>
-                    <p>Height</p>
-                    <p>Weight</p>
+                            <?php 
+                                require 'server.php';
+                                viewPatientProfile();
+                            ?>
+                    
                 </div>
 
             </div>

@@ -52,6 +52,32 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'monitor' ) {
     mysqli_close( $conn );
 }
 
+function viewPatientProfile(){
+    require '../include/db.php';
+    $sql = "SELECT users.id,patients.* From users INNER JOIN patients ON users.id = patients.user_id WHERE role = 'patient'";
+    $query = mysqli_query( $conn, $sql );
+
+
+    if ( mysqli_num_rows( $query ) > 0 ) {
+        // output data of each row
+        while( $row = mysqli_fetch_assoc( $query ) ) {
+            echo "          <p>".$row["image"]."</p>";
+            echo "          <p>".$row["surname"]. ' '.$row["other_names"]."</p>".
+                            " <p>"." Gender : ".$row["gender"]."</p>".
+                            " <p>"."Date Of Birthday : ".$row["date_of_birth"]."</p>".
+                            " <p>"."Phone Number : ".$row["phone"]."</p>".
+                            " <p>"."Height : ".$row["height"]."</p>".
+                            " <p>"."Weight : ".$row["weight"]."</p>".
+                            " <p>"."Address : ".$row["address"]."</p>".
+                            " <p>"."Doctor : ".$row["doctor"]."</p>";
+                                      
+                            
+        }
+    } else {
+        echo 'No Patient Record found';
+    }
+}
+
 
 
 ?>

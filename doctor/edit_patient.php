@@ -13,7 +13,6 @@ unset($_SESSION['edit_patient_test']);
 unset($_SESSION['edit_patient_problems']);
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +36,7 @@ unset($_SESSION['edit_patient_problems']);
         <div class="col-md-9 register-right">
             <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="dashboard.php" aria-selected="true">Main Menu</a>
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="index.php" role="tab" aria-controls="dashboard.php" aria-selected="true">Main Menu</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="../logout.php" role="tab" aria-controls="profile" aria-selected="false">Logout</a>

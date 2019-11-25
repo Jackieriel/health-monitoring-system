@@ -50,7 +50,7 @@ unset($_SESSION['edit_patient_problems']);
                         
                         <a href="viewpatients.php" class="margin-right"><i class="fa fa-database fa-4x text-center"></i><br>View Record</a>
 
-                        <a href="#" class="margin-right"><i class="fa fa-user-edit fa-4x text-center"></i><br>Edit Patient Record</a>
+                        <a href="viewpatients.php" class="margin-right"><i class="fa fa-user-edit fa-4x text-center"></i><br>Edit Patient Record</a>
                 </div>
                                        
                     
