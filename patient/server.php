@@ -53,15 +53,25 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'monitor' ) {
 }
 
 function viewPatientProfile(){
-    require '../include/db.php';
-    $sql = "SELECT users.id,patients.* From users INNER JOIN patients ON users.id = patients.user_id WHERE role = 'patient'";
-    $query = mysqli_query( $conn, $sql );
+    @session_start();
 
+    global $conn;
 
-    if ( mysqli_num_rows( $query ) > 0 ) {
-        // output data of each row
-        while( $row = mysqli_fetch_assoc( $query ) ) {
-            // echo " <img src = '$row["image"]'> ";
+    $sql = "SELECT * FROM users WHERE `id`=" .$_SESSION['auth_id'];
+    $query = mysqli_query($conn, $sql);
+
+    while ($row = mysqli_fetch_array($query)) {
+        $user = $row;
+    }
+
+    $sql = "SELECT * FROM patients WHERE `user_id`=" .$user['id'];
+    $query = mysqli_query($conn, $sql);
+
+    while ($row = mysqli_fetch_array($query)) {
+        $patient = $row;
+    }
+
+            $row = $patient;
             $image = $row['image'];
             echo "<img src='$image' >";
             echo "          <p>".$row["surname"]. ' '.$row["other_names"]."</p>".
@@ -72,12 +82,8 @@ function viewPatientProfile(){
                             " <p>"."Weight : ".$row["weight"]."</p>".
                             " <p>"."Address : ".$row["address"]."</p>".
                             " <p>"."Doctor : ".$row["doctor"]."</p>";
-                                      
-                            
-        }
-    } else {
-        echo 'No Patient Record found';
-    }
+
+
 }
 
 
