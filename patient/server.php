@@ -28,12 +28,21 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'monitor' ) {
 
     if ( empty( $errors ) ) {
 
-        if($blood_pressure > 120 && $blood_glucose >200 &&  $heart_rate <=100 )
+        if($blood_pressure > 120 && $blood_glucose >200 &&  $heart_rate <=50 )
         {
             $remark = "Emergency! Need Immediate Doctor\'s Attention";
-        }elseif($blood_pressure > 120  && $blood_glucose <=70 && $heart_rate >100 )
+        }elseif($blood_pressure <= 125  && $blood_glucose <=70 && $heart_rate >100 )
         {
             $remark = "Emergency! Need Immediate Doctor\'s Attention";
+        }elseif($blood_pressure  >=135  && $blood_glucose <=90 && $heart_rate >100 )
+        {
+            $remark = "Use 15gr carbohyrate, Carbohyrate is high, protein is high : Stop Doing anything for atleast 15 minutes";
+        }elseif($blood_pressure  <=120  && $blood_glucose >200 && $heart_rate <50 )
+        {
+            $remark = "Carbohyrate, protein and sodium is low, Fiber is high: Stop Doing anything for atleast 15 minutes";
+        }elseif($blood_pressure  <=120  && $blood_glucose <=200 && $heart_rate <=100 )
+        {
+            $remark = "Take a walk for 15 minutes";
         }else{
             $remark = "Health Condition Normal";
         }
