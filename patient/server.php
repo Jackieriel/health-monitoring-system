@@ -6,7 +6,7 @@ $db = $conn;
 
 // Monitor vitals
 if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'monitor' ) {
-    var_dump($_POST);
+//    var_dump($_POST);
     // receive all input values from the form
     $patient_id = $_SESSION['auth_id'];
     $blood_pressure = mysqli_real_escape_string( $db, $_POST['blood_pressure'] );
@@ -30,10 +30,10 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'monitor' ) {
 
         if($blood_pressure > 120 && $blood_glucose >200 &&  $heart_rate <=100 )
         {
-            $remark = "Emergency! Need Immediate Doctor's Attention";
+            $remark = "Emergency! Need Immediate Doctor\'s Attention";
         }elseif($blood_pressure > 120  && $blood_glucose <=70 && $heart_rate >100 )
         {
-            $remark = "Emergency! Need Immediate Doctor's Attention";
+            $remark = "Emergency! Need Immediate Doctor\'s Attention";
         }else{
             $remark = "Health Condition Normal";
         }
@@ -71,17 +71,17 @@ function viewPatientProfile(){
         $patient = $row;
     }
 
-            $row = $patient;
-            $image = $row['image'];
-            echo "<img src='$image' >";
-            echo "          <p>".$row["surname"]. ' '.$row["other_names"]."</p>".
-                            " <p>"." Gender : ".$row["gender"]."</p>".
-                            " <p>"."Date Of Birthday : ".$row["date_of_birth"]."</p>".
-                            " <p>"."Phone Number : ".$row["phone"]."</p>".
-                            " <p>"."Height : ".$row["height"]."</p>".
-                            " <p>"."Weight : ".$row["weight"]."</p>".
-                            " <p>"."Address : ".$row["address"]."</p>".
-                            " <p>"."Doctor : ".$row["doctor"]."</p>";
+    $row = $patient;
+    $image = $row['image'];
+    echo "<img src='$image' >";
+    echo "          <p>".$row["surname"]. ' '.$row["other_names"]."</p>".
+                    " <p>"." Gender : ".$row["gender"]."</p>".
+                    " <p>"."Date Of Birthday : ".$row["date_of_birth"]."</p>".
+                    " <p>"."Phone Number : ".$row["phone"]."</p>".
+                    " <p>"."Height : ".$row["height"]."</p>".
+                    " <p>"."Weight : ".$row["weight"]."</p>".
+                    " <p>"."Address : ".$row["address"]."</p>".
+                    " <p>"."Doctor : ".$row["doctor"]."</p>";
 
 
 }
