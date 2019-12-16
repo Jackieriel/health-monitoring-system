@@ -28,20 +28,15 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'monitor' ) {
 
     if ( empty( $errors ) ) {
 
-        if($blood_pressure > 120 && $blood_glucose >200 &&  $heart_rate <=50 )
-        {
+        if($blood_pressure > 120 && $blood_glucose >200 &&  $heart_rate <=50 ){
             $remark = "Emergency! Need Immediate Doctor\'s Attention";
-        }elseif($blood_pressure <= 125  && $blood_glucose <=70 && $heart_rate >100 )
-        {
+        }elseif($blood_pressure <= 125  && $blood_glucose <=70 && $heart_rate >100 ){
             $remark = "Emergency! Need Immediate Doctor\'s Attention";
-        }elseif($blood_pressure  >=135  && $blood_glucose <=90 && $heart_rate >100 )
-        {
-            $remark = "Use 15gr carbohyrate, Carbohyrate is high, protein is high : Stop Doing anything for atleast 15 minutes";
-        }elseif($blood_pressure  <=120  && $blood_glucose >200 && $heart_rate <50 )
-        {
-            $remark = "Carbohyrate, protein and sodium is low, Fiber is high: Stop Doing anything for atleast 15 minutes";
-        }elseif($blood_pressure  <=120  && $blood_glucose <=200 && $heart_rate <=100 )
-        {
+        }elseif($blood_pressure  >=135  && $blood_glucose <=90 && $heart_rate >100 ){
+            $remark = "Use 15gr carbohyrate, Carbohyrate is high, protein is high, Stop Doing anything for atleast 15 minutes";
+        }elseif($blood_pressure  <=120  && $blood_glucose >200 && $heart_rate <50 ){
+            $remark = "Carbohyrate, protein and sodium is low, Fiber is high, Stop Doing anything for atleast 15 minutes";
+        }elseif($blood_pressure  <=120  && $blood_glucose <=200 && $heart_rate <=100 ){
             $remark = "Take a walk for 15 minutes";
         }else{
             $remark = "Health Condition Normal";
@@ -52,6 +47,19 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'monitor' ) {
         mysqli_query( $db, $query );
 
         $_SESSION['remark'] = $remark;
+
+        $message = urlencode("Emergency");
+        $senderid = urlencode('HMS');
+        $to = '08123641748';
+        $token = 'V4O83zUYVHaGJwJ5cvjal1wdAB4ZAX4tsMrd12kZGGULhsxhYeqtW8zQefPQlohFb8MD84OeHmHyFD4gJO7tnTyDH7SIlvALpug0';
+        $routing = 3;
+        $type = 0;
+        $baseurl = 'https://smartsmssolutions.com/api/json.php?';
+        $sendsms = $baseurl.'message='.$message.'&to='.$to.'&sender='.$senderid.'&type='.$type.'&routing='.$routing.'&token='.$token;
+
+        $response = file_get_contents($sendsms);
+
+        echo $response;
 
         header( 'Location: index.php' );
 
@@ -82,6 +90,8 @@ function viewPatientProfile(){
 
     $row = $patient;
     $image = $row['image'];
+    $_SESSION['auth_phone'] = $row['phone'];
+
     echo "<img src='$image' >";
     echo "          <p>".$row["surname"]. ' '.$row["other_names"]."</p>".
                     " <p>"." Gender : ".$row["gender"]."</p>".
@@ -91,8 +101,6 @@ function viewPatientProfile(){
                     " <p>"."Weight : ".$row["weight"]."</p>".
                     " <p>"."Address : ".$row["address"]."</p>".
                     " <p>"."Doctor : ".$row["doctor"]."</p>";
-
-
 }
 
 
