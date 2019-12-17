@@ -1,8 +1,8 @@
-<!-- <?php
-include 'helper.php';
-?> -->
-<?php 
+<?php
 session_start();
+
+include 'helper.php';
+
 if (empty($_SESSION['doctor']) OR empty($_SESSION['role'])) {
 	header("Location: ../index.php");
 }
