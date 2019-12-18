@@ -8,6 +8,7 @@
 }
 
 body{
+    color:#000 !important;
     background:var(--primary-color);
     background: url('../images/health3.jpeg');
     background-position: center;
@@ -139,4 +140,19 @@ form button{
 }
 .transform-upper{
     text-transform: uppercase;
+}
+
+
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+    .grid {
+        display: block;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: repeat(1,minmax(500px,auto));
+        max-width: 90%;
+        margin: 0 auto;
+    }
+ 
 }

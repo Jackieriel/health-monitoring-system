@@ -23,11 +23,7 @@ body{
     include_once 'include/header.html';
     ?>
     <div class="grid">
-        <div class="grid-col first-section text-white">
-            <img src="images/medical.png" alt="" />
-            <!-- <h1 class="text-center">Test</h1>
-          <h1>Test</h1> -->
-        </div>
+        
         <div class="grid-col white">
             <div class="form-grid">
                 <h3 class="primary text-center transform-upper">Login</h3>
@@ -50,6 +46,14 @@ body{
 		 ?>
             </div>
         </div>
+
+        <div class="grid-col first-section text-white">
+            <img src="images/medical.png" alt="" />
+            <!-- <h1 class="text-center">Test</h1>
+          <h1>Test</h1> -->
+        </div>
+
+
     </div>
 
 

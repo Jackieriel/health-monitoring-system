@@ -17,7 +17,7 @@ function login() {
     if ( $row ) {
 
         if ( $row == 0 ) {
-            echo "<b style='font-size:12px;'>Wrong Username/Password Combination</b>";
+            echo "<b style='font-size:12px;color:red;'>Wrong Username/Password Combination</b>";
         }elseif ( $row == 1 ) {
             $fetch = mysqli_fetch_array($query);
             $role = $fetch['role'];
@@ -42,13 +42,13 @@ function login() {
                 $_SESSION['auth_id'] = $id;
                 header( 'Location: patient/' );
             } else {
-                echo '<b>Error</b>';
+                echo "<b style='font-size:12px;color:red;'>Wrong Username/Password Combination</b>";
             }
         } else {
-            echo '<b>Error</b>';
+            echo "<b style='font-size:12px;color:red;'>Wrong Username/Password Combination</b>";
         }
     } else {
-        echo '<b>Error</b>';
+        echo "<b style='font-size:12px;color:red;'>Wrong Username/Password Combination</b>";
     }
 }
 
