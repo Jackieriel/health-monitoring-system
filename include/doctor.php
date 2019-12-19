@@ -92,7 +92,7 @@ function viewPatientTest(){
                             " <td>".$row["ug"]."</td>".
                             " <td>".$row["keton"]."</td>".
                             " <td>".$row["chol"]."</td>".
-                            "  <td>".$row["created_at"]."</td>".
+                            " <td>".$row["created_at"]."</td>".
                     "</tr>".
                  "</tbody>" ;
         }
@@ -177,11 +177,17 @@ function updatepatient()
 
 function viewPatientrealtime() {
     require 'db.php';
-    $sql = "SELECT patients.id,patients.surname,patients.other_names,patient_logs.* From patients INNER JOIN patient_logs ON patients.id = patient_logs.patient_id";
-    $query = mysqli_query( $conn, $sql );
+    // $sql = "SELECT patients.id,patients.surname,patients.other_names,patient_logs.* From patients INNER JOIN patient_logs ON patients.id = patient_logs.patient_id";
+    // $query = mysqli_query( $conn, $sql );
 
 
-    if ( mysqli_num_rows( $query ) > 0 ) {
+    // if ( mysqli_num_rows( $query ) > 0 ) {
+
+        $sql = "SELECT patients.id,patients.surname,patients.other_names,patient_logs.* From patients INNER JOIN patient_logs ON patients.id = patient_logs.patient_id";
+        $query = mysqli_query( $conn, $sql );
+    
+    
+        if ( mysqli_num_rows( $query ) > 0 ) {
         // echo "<table  border='1' style='width:100%'>
         echo "
         <thead>

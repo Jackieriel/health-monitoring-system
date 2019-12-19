@@ -4,6 +4,23 @@ require_once '../include/db.php';
 // connect to database
 $db = $conn;
 
+function sendSms()
+{
+    $message = urlencode("Emergency, A patient need immediate attention");
+    $senderid = urlencode('HMSFDM');
+    $to = '08131327382';
+    $token = 'V4O83zUYVHaGJwJ5cvjal1wdAB4ZAX4tsMrd12kZGGULhsxhYeqtW8zQefPQlohFb8MD84OeHmHyFD4gJO7tnTyDH7SIlvALpug0';
+    $routing = 3;
+    $type = 0;
+    $baseurl = 'https://smartsmssolutions.com/api/json.php?';
+    $sendsms = $baseurl.'message='.$message.'&to='.$to.'&sender='.$senderid.'&type='.$type.'&routing='.$routing.'&token='.$token;
+
+    $response = file_get_contents($sendsms);
+
+    echo $response;
+}
+
+
 // Monitor vitals
 if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'monitor' ) {
 //    var_dump($_POST);
@@ -30,6 +47,7 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'monitor' ) {
 
         if($blood_pressure > 120 && $blood_glucose >200 &&  $heart_rate <=50 ){
             $remark = "Emergency! Need Immediate Doctor\'s Attention";
+            sendSms();
         }elseif($blood_pressure <= 125  && $blood_glucose <=70 && $heart_rate >100 ){
             $remark = "Emergency! Need Immediate Doctor\'s Attention";
         }elseif($blood_pressure  >=135  && $blood_glucose <=90 && $heart_rate >100 ){
@@ -48,18 +66,19 @@ if ( isset( $_POST['form_type'] ) && $_POST['form_type'] === 'monitor' ) {
 
         $_SESSION['remark'] = $remark;
 
-        $message = urlencode("Emergency");
-        $senderid = urlencode('HMS');
-        $to = '08123641748';
-        $token = 'V4O83zUYVHaGJwJ5cvjal1wdAB4ZAX4tsMrd12kZGGULhsxhYeqtW8zQefPQlohFb8MD84OeHmHyFD4gJO7tnTyDH7SIlvALpug0';
-        $routing = 3;
-        $type = 0;
-        $baseurl = 'https://smartsmssolutions.com/api/json.php?';
-        $sendsms = $baseurl.'message='.$message.'&to='.$to.'&sender='.$senderid.'&type='.$type.'&routing='.$routing.'&token='.$token;
 
-        $response = file_get_contents($sendsms);
+        // $message = urlencode("Emergency");
+        // $senderid = urlencode('HMSFDM');
+        // $to = '08131327382';
+        // $token = 'V4O83zUYVHaGJwJ5cvjal1wdAB4ZAX4tsMrd12kZGGULhsxhYeqtW8zQefPQlohFb8MD84OeHmHyFD4gJO7tnTyDH7SIlvALpug0';
+        // $routing = 3;
+        // $type = 0;
+        // $baseurl = 'https://smartsmssolutions.com/api/json.php?';
+        // $sendsms = $baseurl.'message='.$message.'&to='.$to.'&sender='.$senderid.'&type='.$type.'&routing='.$routing.'&token='.$token;
 
-        echo $response;
+        // $response = file_get_contents($sendsms);
+
+        // echo $response;
 
         header( 'Location: index.php' );
 
